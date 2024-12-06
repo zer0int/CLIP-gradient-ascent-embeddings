@@ -16,13 +16,13 @@
 Command-line arguments:
 
 ```
---batch_size', default=13, type=int, help="Reduce batch_size if you have OOM issues"
---model_name', default='ViT-L/14', help="CLIP model to use"
---tokens_to', type=str, default="texts", help="Save CLIP opinion texts path"
---embeds_to', type=str, default="embeds", help="Save CLIP embeddings path"
---use_best', type=str, default="True", help="If True, use best embeds (loss); if False, just saves last step (not recommended)"
---img_folder', type=str, default=None, help="Path to folder with images, for batch embeddings generation"
---use_image', type=str, default=None, help="Path to a single image"
+--batch_size, default=13, type=int, help="Reduce batch_size if you have OOM issues"
+--model_name, default='ViT-L/14', help="CLIP model to use"
+--tokens_to, default="texts", help="Save CLIP opinion texts path"
+--embeds_to, default="embeds", help="Save CLIP embeddings path"
+--use_best, default="True", help="If True, use best embeds (loss); if False, just saves last step (not recommended)"
+--img_folder, default=None, help="Path to folder with images, for batch embeddings generation"
+--use_image, default=None, help="Path to a single image"
 ```
 
 
@@ -40,10 +40,10 @@ for selected_embedding_idx in range(num_embeddings):
 
 # select a random batch from embedding and do a thing
 selected_embedding_idx = torch.randint(0, text_embeddings.size(0), (1,)).item()
-selected_embedding = text_embeddings[selected_embedding_idx:selected_embedding_idx + 1].float()
+selected_embedding = text_embeddings[selected_embedding_idx:selected_embedding_idx + 1]
 
 # or just manually select one
 selected_embedding_idx = 3
-selected_embedding = text_embeddings[selected_embedding_idx:selected_embedding_idx + 1].float()
+selected_embedding = text_embeddings[selected_embedding_idx:selected_embedding_idx + 1]
 ```
 
