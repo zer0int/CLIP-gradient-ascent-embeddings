@@ -1,5 +1,6 @@
 ### 🚀🆙 CLIP-gradient-ascent-embeddings
 
+- ❗ Requires [OpenAI/CLIP](https://github.com/openai/CLIP)
 - Generates matching text embeddings / a 'CLIP opinion' about images
 - Uses gradient ascent to optimize text embeds for cosine similarity with image embeds
 - Saves 'CLIP opinion' as .txt files [best tokens]
