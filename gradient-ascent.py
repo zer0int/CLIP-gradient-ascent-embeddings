@@ -6,6 +6,7 @@ import os
 import clip
 import kornia
 import torch
+from safetensors.torch import load_file
 import numpy as np
 import torch.nn as nn
 import torch.nn.functional as F
@@ -38,8 +39,31 @@ def parse_arguments():
 
 # CLIP Model Loader
 def load_clip_model(model_name, device):
-    model, preprocess = clip.load(model_name, device)
-    return model.eval().float(), preprocess
+    # Check if `model_name` is a valid file path
+    if os.path.exists(model_name):
+        print(f"Loading model from path: {model_name}")
+        
+        if model_name.endswith(".safetensors"):
+            print(f"Detected .safetensors file; assuming ViT-L/14 for loading.")
+            model, preprocess = clip.load("ViT-L/14", device)
+            state_dict = load_file(model_name)
+            model.load_state_dict(state_dict, strict=False)
+            model.to(device)
+            model = model.eval().float()
+        else:
+            _, preprocess = clip.load("ViT-L/14", device)
+            model = torch.load(model_name).to(device).float()
+            model = model.eval().float()
+    else:
+        available_models = clip.available_models()
+        if model_name in available_models:
+            print(f"Detected OpenAI/CLIP model: {model_name}")
+            model, preprocess = clip.load(model_name, device)
+            model = model.eval().float()
+        else:
+            raise ValueError(Fore.RED + Style.BRIGHT + f"\n\nInvalid model_name: '{model_name}'. Must be a file path or one of {available_models}." + Fore.RESET)
+    
+    return model, preprocess
 
 # Image Loader
 def load_image(img_path, sideX, sideY):
