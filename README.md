@@ -18,7 +18,7 @@
 - ⚠️ Must be nevertheless in original "OpenAI/CLIP" format. HuggingFace converted models will NOT work.
 - My [HF: zer0int/CLIP-GmP-ViT-L-14](https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14/tree/main) `model.safetensors` will NOT work (it's for diffusers / HF).
 - Instead, download the full model .safetensors [text encoder AND vision encoder]; direkt link:
-- My [GmP-BEST-smooth](https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14/resolve/main/ViT-L-14-BEST-smooth-GmP-HF-format.safetensors?download=true) and [GmP-Text-detail](https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14/resolve/main/ViT-L-14-TEXT-detail-improved-hiT-GmP-HF.safetensors?download=true) will work with this code.
+- My [GmP-BEST-smooth](https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14/resolve/main/ViT-L-14-BEST-smooth-GmP-HF-format.safetensors?download=true) and [GmP-Text-detail](https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14/resolve/main/ViT-L-14-TEXT-detail-improved-hiT-GmP-HF.safetensors?download=true) and 🆕 [SAE-GmP](https://huggingface.co/zer0int/CLIP-SAE-ViT-L-14/resolve/main/ViT-L-14-GmP-SAE-FULL-model.safetensors?download=true) will work with this code.
 ----
 - 🆕 Added `gradient-ascent-unproj_flux1.py`. Usage is the same; however, in addition to projected embeddings:
 - Saves `pinv` and `inv` version of pre-projection embeddings.
